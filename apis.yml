@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Serverless
   - Application Repository
+  - AWS
   - Lambda
   - SAM
-  - AWS
+  - Serverless
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-serverless-application-repository/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -28,9 +28,9 @@ apis:
     humanURL: https://aws.amazon.com/serverless/serverlessrepo/
     baseURL: https://serverlessrepo.amazonaws.com
     tags:
-      - Serverless
       - Application Repository
       - Lambda
+      - Serverless
     properties:
       - type: Documentation
         url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
