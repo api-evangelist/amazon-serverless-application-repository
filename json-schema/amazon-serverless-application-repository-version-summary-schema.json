@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-serverless-application-repository/refs/heads/main/json-schema/amazon-serverless-application-repository-version-summary-schema.json",
+  "title": "VersionSummary",
+  "description": "Summary of details about an application version.",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "The application ARN.",
+      "example": "arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp"
+    },
+    "semanticVersion": {
+      "type": "string",
+      "description": "The semantic version of the application.",
+      "example": "1.0.0"
+    },
+    "creationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when this version was created."
+    },
+    "sourceCodeUrl": {
+      "type": "string",
+      "description": "A link to a public repository for the source code."
+    }
+  }
+}

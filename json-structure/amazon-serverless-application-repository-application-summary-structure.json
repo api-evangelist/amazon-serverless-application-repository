@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-serverless-application-repository/refs/heads/main/json-structure/amazon-serverless-application-repository-application-summary-structure.json",
+  "name": "ApplicationSummary",
+  "description": "Summary of details about the application.",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "The application ARN.",
+      "example": "arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the application.",
+      "example": "MyApp"
+    },
+    "author": {
+      "type": "string",
+      "description": "The name of the author.",
+      "example": "developer@example.com"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the application."
+    },
+    "creationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when created."
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Labels for discovery."
+    }
+  }
+}

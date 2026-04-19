@@ -1,0 +1,8 @@
+{
+  "applicationId": "arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp",
+  "name": "MyServerlessApp",
+  "author": "developer@example.com",
+  "description": "example-description",
+  "creationTime": "2025-03-15T14:30:00Z",
+  "labels": []
+}

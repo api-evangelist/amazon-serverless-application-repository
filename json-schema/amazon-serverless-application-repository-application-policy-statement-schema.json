@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-serverless-application-repository/refs/heads/main/json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json",
+  "title": "ApplicationPolicyStatement",
+  "description": "Policy statement for an application.",
+  "type": "object",
+  "properties": {
+    "statementId": {
+      "type": "string",
+      "description": "A unique ID for the statement.",
+      "example": "policy-stmt-001"
+    },
+    "principals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "An array of AWS account IDs or * for public access."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "For each action, specify the permission to be granted."
+    }
+  }
+}

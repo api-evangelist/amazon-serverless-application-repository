@@ -1,0 +1,6 @@
+{
+  "applicationId": "arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp",
+  "semanticVersion": "1.0.0",
+  "creationTime": "2025-03-15T14:30:00Z",
+  "sourceCodeUrl": "https://github.com/example/my-app"
+}

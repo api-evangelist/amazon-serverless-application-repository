@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aws": "https://aws.amazon.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Application": "aws:Application",
+    "applicationId": {
+      "@id": "aws:applicationId",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "author": "schema:author",
+    "description": "schema:description",
+    "creationTime": {
+      "@id": "aws:creationTime",
+      "@type": "xsd:dateTime"
+    },
+    "homePageUrl": {
+      "@id": "aws:homePageUrl",
+      "@type": "xsd:string"
+    },
+    "labels": {
+      "@id": "aws:labels",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "licenseUrl": {
+      "@id": "aws:licenseUrl",
+      "@type": "xsd:string"
+    },
+    "readmeUrl": {
+      "@id": "aws:readmeUrl",
+      "@type": "xsd:string"
+    },
+    "spdxLicenseId": {
+      "@id": "aws:spdxLicenseId",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "aws:version",
+      "@type": "xsd:string"
+    },
+    "ApplicationSummary": "aws:ApplicationSummary",
+    "VersionSummary": "aws:VersionSummary",
+    "semanticVersion": {
+      "@id": "aws:semanticVersion",
+      "@type": "xsd:string"
+    },
+    "sourceCodeUrl": {
+      "@id": "aws:sourceCodeUrl",
+      "@type": "xsd:string"
+    },
+    "ApplicationPolicyStatement": "aws:ApplicationPolicyStatement",
+    "statementId": {
+      "@id": "aws:statementId",
+      "@type": "xsd:string"
+    },
+    "principals": {
+      "@id": "aws:principals",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "actions": {
+      "@id": "aws:actions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

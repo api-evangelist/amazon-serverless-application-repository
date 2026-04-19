@@ -1,0 +1,5 @@
+{
+  "statementId": "arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp",
+  "principals": [],
+  "actions": []
+}

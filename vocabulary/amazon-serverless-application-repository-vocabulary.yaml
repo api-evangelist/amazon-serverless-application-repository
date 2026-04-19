@@ -1,0 +1,140 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Amazon Serverless Application Repository"
+  description: "Unified taxonomy mapping operational and capability dimensions of the Amazon Serverless Application Repository API for serverless application publishing and deployment."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: amazon-serverless-application-repository
+      version: "2017-09-08"
+      baseUrl: https://serverlessrepo.{region}.amazonaws.com
+      status: active
+
+  resources:
+    - name: Applications
+      api: amazon-serverless-application-repository
+      actions: [Create, Get, List, Update, Delete]
+    - name: ApplicationVersions
+      api: amazon-serverless-application-repository
+      actions: [Create, List]
+    - name: ApplicationPolicies
+      api: amazon-serverless-application-repository
+      actions: [Get, Put]
+    - name: CloudFormationChangeSets
+      api: amazon-serverless-application-repository
+      actions: [Create]
+
+  actions:
+    - name: Create
+      httpMethods: [POST]
+      pattern: write
+    - name: Get
+      httpMethods: [GET]
+      pattern: read
+    - name: List
+      httpMethods: [GET]
+      pattern: read
+    - name: Update
+      httpMethods: [PATCH]
+      pattern: write
+    - name: Delete
+      httpMethods: [DELETE]
+      pattern: destructive
+    - name: Put
+      httpMethods: [PUT]
+      pattern: write
+
+  schemas:
+    core:
+      - name: Application
+        description: A serverless application published in the SAR
+      - name: ApplicationSummary
+        description: Summary metadata for a serverless application listing
+      - name: VersionSummary
+        description: Summary of a specific application version
+
+  parameters:
+    pagination:
+      - name: nextToken
+        description: Token for paginating through result sets
+      - name: maxItems
+        description: Maximum number of items to return per page
+    identifiers:
+      - name: applicationId
+        description: The ARN of the serverless application
+      - name: semanticVersion
+        description: The semantic version string of an application version
+
+  enums:
+    capabilities:
+      - CAPABILITY_IAM
+      - CAPABILITY_NAMED_IAM
+      - CAPABILITY_RESOURCE_POLICY
+      - CAPABILITY_AUTO_EXPAND
+
+  authentication:
+    schemes:
+      - type: AWS Signature V4
+        description: AWS IAM-based request signing
+        apis: [all]
+
+capability:
+  workflows:
+    - name: Serverless App Management
+      file: capabilities/serverless-app-management.yaml
+      description: End-to-end serverless application lifecycle management including publishing, versioning, and deployment
+      apisConsumed: [amazon-serverless-application-repository]
+      toolCount: 8
+      personas: [Serverless Developer, Platform Engineer]
+      domains: [Serverless, DevOps]
+
+  personas:
+    - id: serverless-developer
+      name: Serverless Developer
+      description: Developers who publish and share SAM-based serverless applications
+      workflows: [Serverless App Management]
+    - id: platform-engineer
+      name: Platform Engineer
+      description: Engineers who discover and deploy pre-built serverless applications from the repository
+      workflows: [Serverless App Management]
+
+  domains:
+    - name: Serverless
+      description: AWS Lambda-based application development, packaging, and distribution
+      resources: [Applications, ApplicationVersions]
+    - name: DevOps
+      description: Application deployment pipeline management via CloudFormation
+      resources: [CloudFormationChangeSets, ApplicationPolicies]
+
+  namespaces:
+    consumed:
+      - amazon-serverless-application-repository
+    rest:
+      - serverless-app-management-api (port 8080)
+    mcp:
+      - serverless-app-management-mcp (port 9090)
+
+  binds:
+    - name: AWS_ACCESS_KEY_ID
+      workflows: [Serverless App Management]
+    - name: AWS_SECRET_ACCESS_KEY
+      workflows: [Serverless App Management]
+    - name: AWS_REGION
+      workflows: [Serverless App Management]
+
+crossReference:
+  - resource: Applications
+    operations: [ListApplications, CreateApplication, GetApplication, UpdateApplication, DeleteApplication]
+    workflows: [Serverless App Management]
+    personas: [Serverless Developer, Platform Engineer]
+  - resource: ApplicationVersions
+    operations: [CreateApplicationVersion, ListApplicationVersions]
+    workflows: [Serverless App Management]
+    personas: [Serverless Developer]
+  - resource: CloudFormationChangeSets
+    operations: [CreateCloudFormationChangeSet]
+    workflows: [Serverless App Management]
+    personas: [Platform Engineer]
