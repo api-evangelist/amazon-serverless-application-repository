@@ -1,7 +1,7 @@
-# Amazon Serverless Application Repository (amazon-serverless-application-repository)
+# Amazon Serverless Application Repository
 The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It enables you to quickly deploy code samples, components, and complete applications for common use cases such as web and mobile backends, data processing, and IoT applications using AWS SAM templates.
 
-**URL:** [Visit Amazon Serverless Application Repository](https://aws.amazon.com/serverless/serverlessrepo/)
+**URL:** [Visit APIs.json URL](https://aws.amazon.com/serverless/serverlessrepo/)
 
 **Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
 
@@ -29,8 +29,8 @@ The AWS Serverless Application Repository API provides programmatic access to cr
 
 - [Documentation](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html)
 - [OpenAPI](openapi/amazon-serverless-application-repository-openapi.yml)
-- [JSONSchema - Application](json-schema/amazon-serverless-application-repository-application-schema.json)
-- [JSONSchema - VersionSummary](json-schema/amazon-serverless-application-repository-version-summary-schema.json)
+- [JSONSchema](json-schema/amazon-serverless-application-repository-application-schema.json)
+- [JSONSchema](json-schema/amazon-serverless-application-repository-version-summary-schema.json)
 
 ## Common Properties
 
@@ -39,6 +39,7 @@ The AWS Serverless Application Repository API provides programmatic access to cr
 - [Documentation](https://docs.aws.amazon.com/serverlessrepo/)
 - [APIReference](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html)
 - [Console](https://console.aws.amazon.com/serverlessrepo/)
+- [SignUp](https://portal.aws.amazon.com/billing/signup)
 - [Pricing](https://aws.amazon.com/serverless/serverlessrepo/pricing/)
 - [FAQ](https://aws.amazon.com/serverless/serverlessrepo/faqs/)
 - [Blog](https://aws.amazon.com/blogs/compute/tag/serverless-application-repository/)
@@ -49,6 +50,22 @@ The AWS Serverless Application Repository API provides programmatic access to cr
 - [GitHubOrganization](https://github.com/aws)
 - [YouTube](https://www.youtube.com/user/AmazonWebServices)
 - [StackOverflow](https://stackoverflow.com/questions/tagged/serverless-application-repository)
+- [KnowledgeCenter](https://repost.aws/knowledge-center)
+- [SpectralRules](rules/amazon-serverless-application-repository-spectral-rules.yml)
+- [Vocabulary](vocabulary/amazon-serverless-application-repository-vocabulary.yaml)
+- [NaftikoCapability](capabilities/serverless-app-management.yaml)
+- [JSON-LD](json-ld/amazon-serverless-application-repository-context.jsonld)
+- [JSONSchema](json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json)
+- [JSONSchema](json-schema/amazon-serverless-application-repository-application-summary-schema.json)
+- [JSONStructure](json-structure/amazon-serverless-application-repository-application-policy-statement-structure.json)
+- [JSONStructure](json-structure/amazon-serverless-application-repository-application-structure.json)
+- [JSONStructure](json-structure/amazon-serverless-application-repository-application-summary-structure.json)
+- [JSONStructure](json-structure/amazon-serverless-application-repository-version-summary-structure.json)
+- [Example](examples/amazon-serverless-application-repository-application-example.json)
+- [Example](examples/amazon-serverless-application-repository-application-policy-statement-example.json)
+- [Example](examples/amazon-serverless-application-repository-application-summary-example.json)
+- [Example](examples/amazon-serverless-application-repository-version-summary-example.json)
+- [NaftikoCapability](capabilities/shared/amazon-serverless-application-repository.yaml)
 
 ## Features
 
@@ -93,28 +110,32 @@ Machine-readable API specifications organized by format.
 
 ### OpenAPI
 
-- [AWS Serverless Application Repository API](openapi/amazon-serverless-application-repository-openapi.yml)
+- [amazon-serverless-application-repository-openapi.yml](openapi/amazon-serverless-application-repository-openapi.yml)
 
 ### JSON Schema
 
-- [Application](json-schema/amazon-serverless-application-repository-application-schema.json)
-- [ApplicationSummary](json-schema/amazon-serverless-application-repository-application-summary-schema.json)
-- [VersionSummary](json-schema/amazon-serverless-application-repository-version-summary-schema.json)
-- [ApplicationPolicyStatement](json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json)
+- [amazon-serverless-application-repository-application-policy-statement-schema.json](json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json)
+- [amazon-serverless-application-repository-application-schema.json](json-schema/amazon-serverless-application-repository-application-schema.json)
+- [amazon-serverless-application-repository-application-summary-schema.json](json-schema/amazon-serverless-application-repository-application-summary-schema.json)
+- [amazon-serverless-application-repository-version-summary-schema.json](json-schema/amazon-serverless-application-repository-version-summary-schema.json)
 
 ### JSON Structure
 
-- [Application](json-structure/amazon-serverless-application-repository-application-structure.json)
-- [VersionSummary](json-structure/amazon-serverless-application-repository-version-summary-structure.json)
+- [amazon-serverless-application-repository-application-policy-statement-structure.json](json-structure/amazon-serverless-application-repository-application-policy-statement-structure.json)
+- [amazon-serverless-application-repository-application-structure.json](json-structure/amazon-serverless-application-repository-application-structure.json)
+- [amazon-serverless-application-repository-application-summary-structure.json](json-structure/amazon-serverless-application-repository-application-summary-structure.json)
+- [amazon-serverless-application-repository-version-summary-structure.json](json-structure/amazon-serverless-application-repository-version-summary-structure.json)
 
 ### JSON-LD
 
-- [Amazon SAR Context](json-ld/amazon-serverless-application-repository-context.jsonld)
+- [amazon-serverless-application-repository-context.jsonld](json-ld/amazon-serverless-application-repository-context.jsonld)
 
 ### Examples
 
-- [Application Example](examples/amazon-serverless-application-repository-application-example.json)
-- [VersionSummary Example](examples/amazon-serverless-application-repository-version-summary-example.json)
+- [amazon-serverless-application-repository-application-example.json](examples/amazon-serverless-application-repository-application-example.json)
+- [amazon-serverless-application-repository-application-policy-statement-example.json](examples/amazon-serverless-application-repository-application-policy-statement-example.json)
+- [amazon-serverless-application-repository-application-summary-example.json](examples/amazon-serverless-application-repository-application-summary-example.json)
+- [amazon-serverless-application-repository-version-summary-example.json](examples/amazon-serverless-application-repository-version-summary-example.json)
 
 ## Capabilities
 
@@ -122,24 +143,23 @@ Naftiko capabilities organized as shared per-API definitions composed into custo
 
 ### Shared Per-API Definitions
 
-- [Amazon SAR API](capabilities/shared/amazon-serverless-application-repository.yaml) — 10 operations for application, version, changeset, and policy management
+- [amazon-serverless-application-repository.yaml](capabilities/shared/amazon-serverless-application-repository.yaml)
 
 ### Workflow Capabilities
 
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Serverless App Management](capabilities/serverless-app-management.yaml) | Amazon SAR | 8 | Serverless Developer, Platform Engineer |
+- [serverless-app-management.yaml](capabilities/serverless-app-management.yaml)
 
 ## Vocabulary
 
-- [Amazon SAR Vocabulary](vocabulary/amazon-serverless-application-repository-vocabulary.yaml) — Unified taxonomy mapping 4 resources, 6 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
+- [amazon-serverless-application-repository-vocabulary.yaml](vocabulary/amazon-serverless-application-repository-vocabulary.yaml)
 
 ## Rules
 
-- [Amazon SAR Spectral Rules](rules/amazon-serverless-application-repository-spectral-rules.yml) — 20 rules across 9 categories enforcing Amazon Serverless Application Repository API conventions
+- [amazon-serverless-application-repository-spectral-rules.yml](rules/amazon-serverless-application-repository-spectral-rules.yml)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
 **Email:** kin@apievangelist.com
+
