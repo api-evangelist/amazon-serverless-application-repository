@@ -7,7 +7,7 @@ description: >-
   processing, and IoT applications using AWS SAM templates.
 url: https://aws.amazon.com/serverless/serverlessrepo/
 baseURL: https://serverlessrepo.amazonaws.com
-x-type: company
+kind: company
 created: '2026-03-16'
 modified: '2026-04-19'
 
@@ -157,7 +157,7 @@ common:
   - name: Amazon S3
     description: Used for hosting static content and storing SAR application artifacts.
 
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/amazon-serverless-application-repository-context.jsonld
 - type: JSONSchema
   url: json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json
