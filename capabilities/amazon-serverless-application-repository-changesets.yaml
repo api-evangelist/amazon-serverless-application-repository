@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Serverless Application Repository API — Changesets
+  description: 'Amazon Serverless Application Repository API — Changesets. 1 operations. Lead operation: Amazon Serverless
+    Application Repository Create CloudFormation Change Set. Self-contained Naftiko capability covering one Amazon Serverless
+    Application Repository business surface.'
+  tags:
+  - Amazon Serverless Application Repository
+  - Changesets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY: AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-serverless-application-repository-changesets
+    baseUri: https://serverlessrepo.{region}.amazonaws.com
+    description: Amazon Serverless Application Repository API — Changesets business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: applications-applicationId-changesets
+      path: /applications/{applicationId}/changesets
+      operations:
+      - name: createcloudformationchangeset
+        method: POST
+        description: Amazon Serverless Application Repository Create CloudFormation Change Set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-serverless-application-repository-changesets-rest
+    port: 8080
+    description: REST adapter for Amazon Serverless Application Repository API — Changesets. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationid}/changesets
+      name: applications-applicationid-changesets
+      description: REST surface for applications-applicationId-changesets.
+      operations:
+      - method: POST
+        name: createcloudformationchangeset
+        description: Amazon Serverless Application Repository Create CloudFormation Change Set
+        call: amazon-serverless-application-repository-changesets.createcloudformationchangeset
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-serverless-application-repository-changesets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Serverless Application Repository API — Changesets. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amazon-serverless-application-repository-create
+      description: Amazon Serverless Application Repository Create CloudFormation Change Set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-serverless-application-repository-changesets.createcloudformationchangeset
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

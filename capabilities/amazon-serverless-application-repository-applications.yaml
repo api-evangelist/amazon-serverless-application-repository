@@ -1,0 +1,249 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Serverless Application Repository API — Applications
+  description: 'Amazon Serverless Application Repository API — Applications. 5 operations. Lead operation: Amazon Serverless
+    Application Repository List Applications. Self-contained Naftiko capability covering one Amazon Serverless Application
+    Repository business surface.'
+  tags:
+  - Amazon Serverless Application Repository
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY: AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-serverless-application-repository-applications
+    baseUri: https://serverlessrepo.{region}.amazonaws.com
+    description: Amazon Serverless Application Repository API — Applications business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Amazon Serverless Application Repository List Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+          description: The total number of items to return.
+        - name: nextToken
+          in: query
+          type: string
+          description: A token to specify where to start paginating.
+      - name: createapplication
+        method: POST
+        description: Amazon Serverless Application Repository Create Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationId
+      path: /applications/{applicationId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Amazon Serverless Application Repository Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+        - name: semanticVersion
+          in: query
+          type: string
+          description: The semantic version of the application to get.
+      - name: updateapplication
+        method: PATCH
+        description: Amazon Serverless Application Repository Update Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapplication
+        method: DELETE
+        description: Amazon Serverless Application Repository Delete Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-serverless-application-repository-applications-rest
+    port: 8080
+    description: REST adapter for Amazon Serverless Application Repository API — Applications. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: listapplications
+        description: Amazon Serverless Application Repository List Applications
+        call: amazon-serverless-application-repository-applications.listapplications
+        with:
+          maxItems: rest.maxItems
+          nextToken: rest.nextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplication
+        description: Amazon Serverless Application Repository Create Application
+        call: amazon-serverless-application-repository-applications.createapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationid}
+      name: applications-applicationid
+      description: REST surface for applications-applicationId.
+      operations:
+      - method: GET
+        name: getapplication
+        description: Amazon Serverless Application Repository Get Application
+        call: amazon-serverless-application-repository-applications.getapplication
+        with:
+          applicationId: rest.applicationId
+          semanticVersion: rest.semanticVersion
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateapplication
+        description: Amazon Serverless Application Repository Update Application
+        call: amazon-serverless-application-repository-applications.updateapplication
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplication
+        description: Amazon Serverless Application Repository Delete Application
+        call: amazon-serverless-application-repository-applications.deleteapplication
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-serverless-application-repository-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Serverless Application Repository API — Applications. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amazon-serverless-application-repository-list
+      description: Amazon Serverless Application Repository List Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-serverless-application-repository-applications.listapplications
+      with:
+        maxItems: tools.maxItems
+        nextToken: tools.nextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-serverless-application-repository-create
+      description: Amazon Serverless Application Repository Create Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-serverless-application-repository-applications.createapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-serverless-application-repository-get
+      description: Amazon Serverless Application Repository Get Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-serverless-application-repository-applications.getapplication
+      with:
+        applicationId: tools.applicationId
+        semanticVersion: tools.semanticVersion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-serverless-application-repository-update
+      description: Amazon Serverless Application Repository Update Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-serverless-application-repository-applications.updateapplication
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-serverless-application-repository-delete
+      description: Amazon Serverless Application Repository Delete Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-serverless-application-repository-applications.deleteapplication
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,125 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Serverless Application Repository API — Policies
+  description: 'Amazon Serverless Application Repository API — Policies. 2 operations. Lead operation: Amazon Serverless Application
+    Repository Get Application Policy. Self-contained Naftiko capability covering one Amazon Serverless Application Repository
+    business surface.'
+  tags:
+  - Amazon Serverless Application Repository
+  - Policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY: AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-serverless-application-repository-policies
+    baseUri: https://serverlessrepo.{region}.amazonaws.com
+    description: Amazon Serverless Application Repository API — Policies business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationId-policy
+      path: /applications/{applicationId}/policy
+      operations:
+      - name: getapplicationpolicy
+        method: GET
+        description: Amazon Serverless Application Repository Get Application Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+      - name: putapplicationpolicy
+        method: PUT
+        description: Amazon Serverless Application Repository Put Application Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The Amazon Resource Name (ARN) of the application.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_SERVERLESS_APPLICATION_REPOSITORY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-serverless-application-repository-policies-rest
+    port: 8080
+    description: REST adapter for Amazon Serverless Application Repository API — Policies. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationid}/policy
+      name: applications-applicationid-policy
+      description: REST surface for applications-applicationId-policy.
+      operations:
+      - method: GET
+        name: getapplicationpolicy
+        description: Amazon Serverless Application Repository Get Application Policy
+        call: amazon-serverless-application-repository-policies.getapplicationpolicy
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationpolicy
+        description: Amazon Serverless Application Repository Put Application Policy
+        call: amazon-serverless-application-repository-policies.putapplicationpolicy
+        with:
+          applicationId: rest.applicationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-serverless-application-repository-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Serverless Application Repository API — Policies. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amazon-serverless-application-repository-get
+      description: Amazon Serverless Application Repository Get Application Policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-serverless-application-repository-policies.getapplicationpolicy
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-serverless-application-repository-put
+      description: Amazon Serverless Application Repository Put Application Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-serverless-application-repository-policies.putapplicationpolicy
+      with:
+        applicationId: tools.applicationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
