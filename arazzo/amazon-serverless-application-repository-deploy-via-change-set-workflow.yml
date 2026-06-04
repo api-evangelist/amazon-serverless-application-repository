@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: AWS SAR Deploy Application Via Change Set
+  summary: Publish an application version, then create a CloudFormation change set to deploy it into a stack.
+  description: >-
+    Drives a serverless application from publication to a deployable
+    CloudFormation change set. The workflow publishes a new application version
+    from a packaged SAM template and then requests an AWS CloudFormation change
+    set targeting a named stack at that semantic version, returning the change
+    set and stack identifiers a caller would execute next. The Serverless
+    Application Repository API exposes only change set creation (there is no
+    get-change-set or template-fetch operation), so verification is adapted to
+    confirm the returned change set identifiers. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serverlessRepoApi
+  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-via-change-set
+  summary: Publish a version and create a CloudFormation change set for a stack.
+  description: >-
+    Creates a new application version from a packaged SAM template, then creates
+    a CloudFormation change set for the supplied stack at that version.
+  inputs:
+    type: object
+    required:
+    - applicationId
+    - semanticVersion
+    - templateBody
+    - stackName
+    properties:
+      applicationId:
+        type: string
+        description: The Amazon Resource Name (ARN) of the application.
+      semanticVersion:
+        type: string
+        description: The semantic version to publish and deploy (e.g. 1.0.0).
+      templateBody:
+        type: string
+        description: The raw packaged AWS SAM template of your application.
+      sourceCodeUrl:
+        type: string
+        description: A link to a public repository for the source code.
+      stackName:
+        type: string
+        description: The name or unique ID of the stack to create a change set for.
+      changeSetName:
+        type: string
+        description: The name of the change set.
+      capabilities:
+        type: array
+        items:
+          type: string
+        description: Values you must specify before deploying certain applications.
+  steps:
+  - stepId: createVersion
+    description: >-
+      Publish the new application version from the supplied packaged SAM
+      template so it can be deployed.
+    operationId: CreateApplicationVersion
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        semanticVersion: $inputs.semanticVersion
+        templateBody: $inputs.templateBody
+        sourceCodeUrl: $inputs.sourceCodeUrl
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      semanticVersion: $response.body#/semanticVersion
+  - stepId: createChangeSet
+    description: >-
+      Create an AWS CloudFormation change set for the supplied stack at the
+      version just published.
+    operationId: CreateCloudFormationChangeSet
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        stackName: $inputs.stackName
+        changeSetName: $inputs.changeSetName
+        semanticVersion: $steps.createVersion.outputs.semanticVersion
+        capabilities: $inputs.capabilities
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      changeSetId: $response.body#/changeSetId
+      stackId: $response.body#/stackId
+      semanticVersion: $response.body#/semanticVersion
+  outputs:
+    changeSetId: $steps.createChangeSet.outputs.changeSetId
+    stackId: $steps.createChangeSet.outputs.stackId
+    deployedVersion: $steps.createChangeSet.outputs.semanticVersion

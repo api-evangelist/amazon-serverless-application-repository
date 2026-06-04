@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: AWS SAR Provision And Share Application
+  summary: Create an application, publish a version, grant deploy permissions, and create a deploy change set.
+  description: >-
+    An end-to-end onboarding flow that takes a serverless application from
+    nothing to shareable and deployable. The workflow creates the application,
+    publishes a semantic version from a packaged SAM template, sets a permission
+    policy that grants accounts the ability to deploy it, and finally creates a
+    CloudFormation change set targeting a named stack at the published version.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serverlessRepoApi
+  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-and-share
+  summary: Create, version, share, and stage a change set for an application.
+  description: >-
+    Creates an application, publishes a version, applies a sharing policy, and
+    creates a CloudFormation change set for a named stack.
+  inputs:
+    type: object
+    required:
+    - name
+    - author
+    - description
+    - semanticVersion
+    - templateBody
+    - statements
+    - stackName
+    properties:
+      name:
+        type: string
+        description: The name of the application to create.
+      author:
+        type: string
+        description: The name of the author publishing the app.
+      description:
+        type: string
+        description: The description of the application.
+      semanticVersion:
+        type: string
+        description: The semantic version to publish (e.g. 1.0.0).
+      templateBody:
+        type: string
+        description: The raw packaged AWS SAM template of your application.
+      statements:
+        type: array
+        description: An array of policy statements granting deploy permissions.
+        items:
+          type: object
+          properties:
+            statementId:
+              type: string
+            principals:
+              type: array
+              items:
+                type: string
+            actions:
+              type: array
+              items:
+                type: string
+      stackName:
+        type: string
+        description: The name or unique ID of the stack to create a change set for.
+      changeSetName:
+        type: string
+        description: The name of the change set.
+  steps:
+  - stepId: createApplication
+    description: >-
+      Create the application that will be versioned, shared, and deployed.
+    operationId: CreateApplication
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        author: $inputs.author
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      applicationId: $response.body#/applicationId
+  - stepId: createVersion
+    description: >-
+      Publish a semantic version from the supplied packaged SAM template.
+    operationId: CreateApplicationVersion
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        semanticVersion: $inputs.semanticVersion
+        templateBody: $inputs.templateBody
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      semanticVersion: $response.body#/semanticVersion
+  - stepId: putPolicy
+    description: >-
+      Apply the sharing permission policy so the supplied principals can deploy
+      the application.
+    operationId: PutApplicationPolicy
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        statements: $inputs.statements
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      statements: $response.body#/statements
+  - stepId: createChangeSet
+    description: >-
+      Create a CloudFormation change set for the supplied stack at the published
+      version, ready to be executed.
+    operationId: CreateCloudFormationChangeSet
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        stackName: $inputs.stackName
+        changeSetName: $inputs.changeSetName
+        semanticVersion: $steps.createVersion.outputs.semanticVersion
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      changeSetId: $response.body#/changeSetId
+      stackId: $response.body#/stackId
+  outputs:
+    applicationId: $steps.createApplication.outputs.applicationId
+    publishedVersion: $steps.createVersion.outputs.semanticVersion
+    appliedStatements: $steps.putPolicy.outputs.statements
+    changeSetId: $steps.createChangeSet.outputs.changeSetId
+    stackId: $steps.createChangeSet.outputs.stackId

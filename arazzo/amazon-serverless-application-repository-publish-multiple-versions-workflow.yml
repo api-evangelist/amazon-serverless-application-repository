@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: AWS SAR Publish Multiple Versions
+  summary: Create an application and publish two sequential semantic versions, then list all versions.
+  description: >-
+    Bootstraps an application with an iterative release history. The workflow
+    creates a new application, publishes an initial semantic version, publishes
+    a second follow-on version, and then lists the application's versions to
+    confirm both releases are present. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serverlessRepoApi
+  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-multiple-versions
+  summary: Create an application and publish two versions, then list them.
+  description: >-
+    Creates an application, publishes an initial version and a second version,
+    and lists the resulting version history.
+  inputs:
+    type: object
+    required:
+    - name
+    - author
+    - description
+    - firstVersion
+    - secondVersion
+    properties:
+      name:
+        type: string
+        description: The name of the application to create.
+      author:
+        type: string
+        description: The name of the author publishing the app.
+      description:
+        type: string
+        description: The description of the application.
+      firstVersion:
+        type: string
+        description: The first semantic version to publish (e.g. 1.0.0).
+      firstTemplateBody:
+        type: string
+        description: The packaged AWS SAM template for the first version.
+      secondVersion:
+        type: string
+        description: The second semantic version to publish (e.g. 1.1.0).
+      secondTemplateBody:
+        type: string
+        description: The packaged AWS SAM template for the second version.
+  steps:
+  - stepId: createApplication
+    description: >-
+      Create the application that both versions will be published onto.
+    operationId: CreateApplication
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        author: $inputs.author
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      applicationId: $response.body#/applicationId
+  - stepId: createFirstVersion
+    description: >-
+      Publish the initial semantic version from the supplied packaged SAM
+      template.
+    operationId: CreateApplicationVersion
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        semanticVersion: $inputs.firstVersion
+        templateBody: $inputs.firstTemplateBody
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      semanticVersion: $response.body#/semanticVersion
+  - stepId: createSecondVersion
+    description: >-
+      Publish the follow-on semantic version onto the same application.
+    operationId: CreateApplicationVersion
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        semanticVersion: $inputs.secondVersion
+        templateBody: $inputs.secondTemplateBody
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      semanticVersion: $response.body#/semanticVersion
+  - stepId: listVersions
+    description: >-
+      List the application's versions to confirm both releases are present.
+    operationId: ListApplicationVersions
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.createApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versions: $response.body#/versions
+  outputs:
+    applicationId: $steps.createApplication.outputs.applicationId
+    firstPublishedVersion: $steps.createFirstVersion.outputs.semanticVersion
+    secondPublishedVersion: $steps.createSecondVersion.outputs.semanticVersion
+    versions: $steps.listVersions.outputs.versions

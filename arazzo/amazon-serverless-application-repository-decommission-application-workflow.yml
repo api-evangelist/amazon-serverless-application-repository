@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: AWS SAR Decommission Application
+  summary: Confirm an application exists by reading it, then delete it to decommission it.
+  description: >-
+    Safely retires a serverless application. The workflow first reads the
+    application to confirm it exists and capture its identity, then deletes it.
+    The list operation is also run afterward so the caller can confirm the
+    application is no longer present. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serverlessRepoApi
+  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+  type: openapi
+workflows:
+- workflowId: decommission-application
+  summary: Confirm, delete, and verify removal of an application.
+  description: >-
+    Reads an application to confirm it exists, deletes it, and lists
+    applications to confirm it is gone.
+  inputs:
+    type: object
+    required:
+    - applicationId
+    properties:
+      applicationId:
+        type: string
+        description: The Amazon Resource Name (ARN) of the application to delete.
+  steps:
+  - stepId: getApplication
+    description: >-
+      Read the application to confirm it exists before deleting it.
+    operationId: GetApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/applicationId
+      name: $response.body#/name
+  - stepId: deleteApplication
+    description: >-
+      Delete the confirmed application to decommission it.
+    operationId: DeleteApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.getApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deletedApplicationId: $steps.getApplication.outputs.applicationId
+  - stepId: listApplications
+    description: >-
+      List applications so the caller can confirm the deleted application is no
+      longer present.
+    operationId: ListApplications
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applications: $response.body#/applications
+  outputs:
+    deletedApplicationId: $steps.deleteApplication.outputs.deletedApplicationId
+    remainingApplications: $steps.listApplications.outputs.applications

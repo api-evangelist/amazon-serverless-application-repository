@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: AWS SAR Update Application Metadata
+  summary: Read an application, update its descriptive metadata, then read it back to confirm the changes.
+  description: >-
+    Maintains the descriptive metadata of an existing serverless application.
+    The workflow reads the current application to capture its present state,
+    patches the author, description, home page URL, labels, and readme, and then
+    reads the application back to confirm the updates were applied. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: serverlessRepoApi
+  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-application-metadata
+  summary: Read, patch, and re-read an application's descriptive metadata.
+  description: >-
+    Reads an application's current state, updates its metadata fields, and reads
+    it back to confirm the new values.
+  inputs:
+    type: object
+    required:
+    - applicationId
+    properties:
+      applicationId:
+        type: string
+        description: The Amazon Resource Name (ARN) of the application.
+      author:
+        type: string
+        description: The name of the author publishing the app.
+      description:
+        type: string
+        description: The description of the application.
+      homePageUrl:
+        type: string
+        description: A URL with more information about the application.
+      labels:
+        type: array
+        items:
+          type: string
+        description: Labels to improve discovery of apps in search results.
+      readmeBody:
+        type: string
+        description: A text readme file with a more detailed description.
+  steps:
+  - stepId: getBefore
+    description: >-
+      Read the application to capture its current metadata before applying any
+      changes.
+    operationId: GetApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $inputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/applicationId
+      description: $response.body#/description
+  - stepId: updateApplication
+    description: >-
+      Patch the application's metadata with the supplied author, description,
+      home page URL, labels, and readme.
+    operationId: UpdateApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.getBefore.outputs.applicationId
+    requestBody:
+      contentType: application/json
+      payload:
+        author: $inputs.author
+        description: $inputs.description
+        homePageUrl: $inputs.homePageUrl
+        labels: $inputs.labels
+        readmeBody: $inputs.readmeBody
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/applicationId
+      description: $response.body#/description
+  - stepId: getAfter
+    description: >-
+      Read the application back to confirm the metadata updates were applied.
+    operationId: GetApplication
+    parameters:
+    - name: applicationId
+      in: path
+      value: $steps.updateApplication.outputs.applicationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      applicationId: $response.body#/applicationId
+      description: $response.body#/description
+      name: $response.body#/name
+  outputs:
+    applicationId: $steps.getAfter.outputs.applicationId
+    previousDescription: $steps.getBefore.outputs.description
+    updatedDescription: $steps.getAfter.outputs.description
