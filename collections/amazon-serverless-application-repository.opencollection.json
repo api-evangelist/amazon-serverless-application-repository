@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Serverless Application Repository API",
+    "version": "Thu Sep 07 2017 20:00:00 GMT-0400 (Eastern Daylight Time)"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "The total number of items to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to specify where to start paginating."
+              }
+            ]
+          },
+          "docs": "Lists applications owned by the requester."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Create Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an application, optionally including an AWS SAM file to create the first application version in the same call."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              },
+              {
+                "name": "semanticVersion",
+                "value": "",
+                "type": "query",
+                "description": "The semantic version of the application to get."
+              }
+            ]
+          },
+          "docs": "Gets the specified application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Update Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Delete Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ]
+          },
+          "docs": "Deletes the specified application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository List Application Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/versions",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              },
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "The total number of items to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to specify where to start paginating."
+              }
+            ]
+          },
+          "docs": "Lists versions for the specified application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Create Application Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/versions",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an application version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Changesets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Create CloudFormation Change Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/changesets",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an AWS CloudFormation change set for the given application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Get Application Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/policy",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ]
+          },
+          "docs": "Retrieves the policy for the application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Put Application Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/policy",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the permission policy for an application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

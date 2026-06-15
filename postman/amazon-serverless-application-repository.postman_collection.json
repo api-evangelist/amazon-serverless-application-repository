@@ -1,0 +1,1314 @@
+{
+  "info": {
+    "_postman_id": "9bdf0ba0-6430-4bbf-8f01-6bb3b4d35516",
+    "name": "Amazon Serverless Application Repository API",
+    "description": "The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:18.000Z",
+    "updatedAt": "2026-06-05T15:05:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9bdf0ba0-6430-4bbf-8f01-6bb3b4d35516"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationId}",
+          "item": [
+            {
+              "name": "versions",
+              "item": [
+                {
+                  "name": "Amazon Serverless Application Repository List Application Versions",
+                  "id": "c044ba6a-e725-4d92-b23c-a8de1bf64811",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId/versions?maxItems=<integer>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId",
+                        "versions"
+                      ],
+                      "query": [
+                        {
+                          "description": "The total number of items to return.",
+                          "key": "maxItems",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "A token to specify where to start paginating.",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "5a5c8921-a571-4c8f-a11b-5dd164cda816",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                        }
+                      ]
+                    },
+                    "description": "Lists versions for the specified application."
+                  },
+                  "response": [
+                    {
+                      "id": "5a1368f0-f1e1-42af-bc5b-86d13cd1eceb",
+                      "name": "Successful response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationId/versions?maxItems=<integer>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationId",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "The total number of items to return.",
+                              "key": "maxItems",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A token to specify where to start paginating.",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"versions\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"semanticVersion\": \"<string>\",\n      \"creationTime\": \"<dateTime>\",\n      \"sourceCodeUrl\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"semanticVersion\": \"<string>\",\n      \"creationTime\": \"<dateTime>\",\n      \"sourceCodeUrl\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:19.000Z",
+                      "updatedAt": "2026-06-05T15:05:19.000Z",
+                      "uid": "35240-5a1368f0-f1e1-42af-bc5b-86d13cd1eceb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-c044ba6a-e725-4d92-b23c-a8de1bf64811"
+                },
+                {
+                  "name": "Amazon Serverless Application Repository Create Application Version",
+                  "id": "e05f3f97-f867-4972-9944-795bbe7c7b1a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"semanticVersion\": \"<string>\",\n  \"sourceCodeArchiveUrl\": \"<string>\",\n  \"sourceCodeUrl\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId/versions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId",
+                        "versions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "15879402-bc1c-4a0f-819e-6c153280a624",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                        }
+                      ]
+                    },
+                    "description": "Creates an application version."
+                  },
+                  "response": [
+                    {
+                      "id": "c22c6ea6-74da-40e1-a7df-c0b8ff4037f4",
+                      "name": "Application version created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"semanticVersion\": \"<string>\",\n  \"sourceCodeArchiveUrl\": \"<string>\",\n  \"sourceCodeUrl\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"applicationId\": \"<string>\",\n  \"semanticVersion\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"sourceCodeUrl\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:19.000Z",
+                      "updatedAt": "2026-06-05T15:05:19.000Z",
+                      "uid": "35240-c22c6ea6-74da-40e1-a7df-c0b8ff4037f4"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-e05f3f97-f867-4972-9944-795bbe7c7b1a"
+                }
+              ],
+              "id": "58c7459f-aaf1-49cb-a6a9-3a939c8ee1ef",
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-58c7459f-aaf1-49cb-a6a9-3a939c8ee1ef"
+            },
+            {
+              "name": "changesets",
+              "item": [
+                {
+                  "name": "Amazon Serverless Application Repository Create CloudFormation Change Set",
+                  "id": "7c232679-962a-4af0-bfe0-a582f66528d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"stackName\": \"<string>\",\n  \"capabilities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"changeSetName\": \"<string>\",\n  \"semanticVersion\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId/changesets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId",
+                        "changesets"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5a699fdc-a0cb-4995-b33b-082837b1b536",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                        }
+                      ]
+                    },
+                    "description": "Creates an AWS CloudFormation change set for the given application."
+                  },
+                  "response": [
+                    {
+                      "id": "75f0c409-def7-4c22-b805-759482dd14eb",
+                      "name": "CloudFormation change set created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"stackName\": \"<string>\",\n  \"capabilities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"changeSetName\": \"<string>\",\n  \"semanticVersion\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationId/changesets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationId",
+                            "changesets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"applicationId\": \"<string>\",\n  \"changeSetId\": \"<string>\",\n  \"semanticVersion\": \"<string>\",\n  \"stackId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:19.000Z",
+                      "updatedAt": "2026-06-05T15:05:19.000Z",
+                      "uid": "35240-75f0c409-def7-4c22-b805-759482dd14eb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-7c232679-962a-4af0-bfe0-a582f66528d6"
+                }
+              ],
+              "id": "b680484e-9d47-4d3f-97fd-2b6dd3ae871b",
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-b680484e-9d47-4d3f-97fd-2b6dd3ae871b"
+            },
+            {
+              "name": "policy",
+              "item": [
+                {
+                  "name": "Amazon Serverless Application Repository Get Application Policy",
+                  "id": "d28be2ee-e335-41fd-8799-bad8ffd2c430",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId/policy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId",
+                        "policy"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1ba1bb49-a5c1-4b90-886f-2c9d9acf9734",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the policy for the application."
+                  },
+                  "response": [
+                    {
+                      "id": "6892c9ae-e5b9-443a-a9b7-8d018fdf3b6d",
+                      "name": "Successful response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationId/policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationId",
+                            "policy"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statements\": [\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:05:19.000Z",
+                      "updatedAt": "2026-06-05T15:05:19.000Z",
+                      "uid": "35240-6892c9ae-e5b9-443a-a9b7-8d018fdf3b6d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-d28be2ee-e335-41fd-8799-bad8ffd2c430"
+                },
+                {
+                  "name": "Amazon Serverless Application Repository Put Application Policy",
+                  "id": "c60292b2-e785-461d-ae83-3eac13fe37d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"statements\": [\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId/policy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId",
+                        "policy"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a02535fd-2f8b-4ab6-b4b6-d3a87fbacc95",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                        }
+                      ]
+                    },
+                    "description": "Sets the permission policy for an application."
+                  },
+                  "response": [
+                    {
+                      "id": "e3d0177f-8676-4c5c-8289-f2aceb25f2df",
+                      "name": "Policy updated.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationId/policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationId",
+                            "policy"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statements\": [\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:05:19.000Z",
+                      "updatedAt": "2026-06-05T15:05:19.000Z",
+                      "uid": "35240-e3d0177f-8676-4c5c-8289-f2aceb25f2df"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-c60292b2-e785-461d-ae83-3eac13fe37d6"
+                }
+              ],
+              "id": "95f56b62-53c2-4b36-a021-bea154fef6f8",
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-95f56b62-53c2-4b36-a021-bea154fef6f8"
+            },
+            {
+              "name": "Amazon Serverless Application Repository Get Application",
+              "id": "aba80495-eb09-4b4d-9f3e-0ea0392e2f8b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId?semanticVersion=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "query": [
+                    {
+                      "description": "The semantic version of the application to get.",
+                      "key": "semanticVersion",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "38c56612-b22e-4fcd-84e3-83e45eb27b23",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    }
+                  ]
+                },
+                "description": "Gets the specified application."
+              },
+              "response": [
+                {
+                  "id": "8c399af2-f446-4807-9397-289d5e983842",
+                  "name": "Successful response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId?semanticVersion=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The semantic version of the application to get.",
+                          "key": "semanticVersion",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"applicationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseUrl\": \"<string>\",\n  \"readmeUrl\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"version\": {\n    \"applicationId\": \"<string>\",\n    \"semanticVersion\": \"<string>\",\n    \"creationTime\": \"<dateTime>\",\n    \"sourceCodeUrl\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-8c399af2-f446-4807-9397-289d5e983842"
+                },
+                {
+                  "id": "17c7ea87-6a97-4b4f-be6f-8d883e73f176",
+                  "name": "Application not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId?semanticVersion=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The semantic version of the application to get.",
+                          "key": "semanticVersion",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-17c7ea87-6a97-4b4f-be6f-8d883e73f176"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-aba80495-eb09-4b4d-9f3e-0ea0392e2f8b"
+            },
+            {
+              "name": "Amazon Serverless Application Repository Update Application",
+              "id": "c9558d27-9e90-4459-9fb6-4b7992e2f679",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"readmeBody\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "49abd62a-2e3e-4a25-99ae-9cc17efd129f",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    }
+                  ]
+                },
+                "description": "Updates the specified application."
+              },
+              "response": [
+                {
+                  "id": "644b4344-ac07-4646-a578-fcfded2dd148",
+                  "name": "Successful response.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"readmeBody\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"applicationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseUrl\": \"<string>\",\n  \"readmeUrl\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"version\": {\n    \"applicationId\": \"<string>\",\n    \"semanticVersion\": \"<string>\",\n    \"creationTime\": \"<dateTime>\",\n    \"sourceCodeUrl\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-644b4344-ac07-4646-a578-fcfded2dd148"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-c9558d27-9e90-4459-9fb6-4b7992e2f679"
+            },
+            {
+              "name": "Amazon Serverless Application Repository Delete Application",
+              "id": "1dbed725-3a10-4aa1-87db-77691316a30e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7b76c780-99f3-4319-9f6b-325e52c7d0dd",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified application."
+              },
+              "response": [
+                {
+                  "id": "034905cb-ec77-435d-a203-8bd1960d43b3",
+                  "name": "Application deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-034905cb-ec77-435d-a203-8bd1960d43b3"
+                },
+                {
+                  "id": "a1657823-1c20-4137-bde7-c4dae5f557d7",
+                  "name": "Application not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:19.000Z",
+                  "updatedAt": "2026-06-05T15:05:19.000Z",
+                  "uid": "35240-a1657823-1c20-4137-bde7-c4dae5f557d7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-1dbed725-3a10-4aa1-87db-77691316a30e"
+            }
+          ],
+          "id": "e506f0cf-337f-406b-8441-020a31b69a60",
+          "createdAt": "2026-06-05T15:05:19.000Z",
+          "updatedAt": "2026-06-05T15:05:19.000Z",
+          "uid": "35240-e506f0cf-337f-406b-8441-020a31b69a60"
+        },
+        {
+          "name": "Amazon Serverless Application Repository List Applications",
+          "id": "5c5959cd-1a27-4f09-8aaa-b2f91d3985f6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications?maxItems=<integer>&nextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ],
+              "query": [
+                {
+                  "description": "The total number of items to return.",
+                  "key": "maxItems",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "A token to specify where to start paginating.",
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists applications owned by the requester."
+          },
+          "response": [
+            {
+              "id": "16edaf64-e78d-4780-9aae-9854fed9b539",
+              "name": "Successful response.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?maxItems=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "The total number of items to return.",
+                      "key": "maxItems",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "A token to specify where to start paginating.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"applications\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"author\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationTime\": \"<dateTime>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"author\": \"<string>\",\n      \"description\": \"<string>\",\n      \"creationTime\": \"<dateTime>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-16edaf64-e78d-4780-9aae-9854fed9b539"
+            },
+            {
+              "id": "eee7703d-abe2-4e46-b0ba-4e9192d81b8d",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?maxItems=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "The total number of items to return.",
+                      "key": "maxItems",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "A token to specify where to start paginating.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-eee7703d-abe2-4e46-b0ba-4e9192d81b8d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:19.000Z",
+          "updatedAt": "2026-06-05T15:05:19.000Z",
+          "uid": "35240-5c5959cd-1a27-4f09-8aaa-b2f91d3985f6"
+        },
+        {
+          "name": "Amazon Serverless Application Repository Create Application",
+          "id": "d044b8e6-8346-4264-b091-c5316ff6eacb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseBody\": \"<string>\",\n  \"readmeBody\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/applications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            },
+            "description": "Creates an application, optionally including an AWS SAM file to create the first application version in the same call."
+          },
+          "response": [
+            {
+              "id": "145b4fa1-7b3f-42e5-b9ce-256f1f808cf7",
+              "name": "Application created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseBody\": \"<string>\",\n  \"readmeBody\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"applicationId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseUrl\": \"<string>\",\n  \"readmeUrl\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"version\": {\n    \"applicationId\": \"<string>\",\n    \"semanticVersion\": \"<string>\",\n    \"creationTime\": \"<dateTime>\",\n    \"sourceCodeUrl\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-145b4fa1-7b3f-42e5-b9ce-256f1f808cf7"
+            },
+            {
+              "id": "be0c91d8-d648-4a0a-a1cd-fce749bf2e99",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"author\": \"<string>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"homePageUrl\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"licenseBody\": \"<string>\",\n  \"readmeBody\": \"<string>\",\n  \"spdxLicenseId\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:05:19.000Z",
+              "updatedAt": "2026-06-05T15:05:19.000Z",
+              "uid": "35240-be0c91d8-d648-4a0a-a1cd-fce749bf2e99"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:19.000Z",
+          "updatedAt": "2026-06-05T15:05:19.000Z",
+          "uid": "35240-d044b8e6-8346-4264-b091-c5316ff6eacb"
+        }
+      ],
+      "id": "27359cc4-7351-4742-af6d-deb2ab6060ae",
+      "createdAt": "2026-06-05T15:05:19.000Z",
+      "updatedAt": "2026-06-05T15:05:19.000Z",
+      "uid": "35240-27359cc4-7351-4742-af6d-deb2ab6060ae"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://serverlessrepo.{{region}}.amazonaws.com"
+    }
+  ]
+}
