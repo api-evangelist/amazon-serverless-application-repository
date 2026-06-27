@@ -38,33 +38,30 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-serverless-application-repository/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/amazon-serverless-application-repository-browse-applications-workflow.yml
-        name: AWS SAR Browse And Inspect Applications
-        summary: List owned applications, inspect the first one in detail, and enumerate its published versions.
-      - url: arazzo/amazon-serverless-application-repository-decommission-application-workflow.yml
-        name: AWS SAR Decommission Application
-        summary: Confirm an application exists by reading it, then delete it to decommission it.
-      - url: arazzo/amazon-serverless-application-repository-deploy-via-change-set-workflow.yml
-        name: AWS SAR Deploy Application Via Change Set
-        summary: Publish an application version, then create a CloudFormation change set to deploy it into a stack.
-      - url: arazzo/amazon-serverless-application-repository-provision-and-share-workflow.yml
-        name: AWS SAR Provision And Share Application
-        summary: Create an application, publish a version, grant deploy permissions, and create a deploy change set.
-      - url: arazzo/amazon-serverless-application-repository-publish-application-workflow.yml
-        name: AWS SAR Publish Application
-        summary: Create a new serverless application, add a version to it, then confirm the published result.
-      - url: arazzo/amazon-serverless-application-repository-publish-multiple-versions-workflow.yml
-        name: AWS SAR Publish Multiple Versions
-        summary: Create an application and publish two sequential semantic versions, then list all versions.
-      - url: arazzo/amazon-serverless-application-repository-set-application-policy-workflow.yml
-        name: AWS SAR Set Application Policy
-        summary: Create an application, attach a sharing permission policy to it, then read the policy back.
-      - url: arazzo/amazon-serverless-application-repository-update-application-metadata-workflow.yml
-        name: AWS SAR Update Application Metadata
-        summary: Read an application, update its descriptive metadata, then read it back to confirm the changes.
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-browse-applications-workflow.yml
+    name: AWS SAR Browse And Inspect Applications
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-decommission-application-workflow.yml
+    name: AWS SAR Decommission Application
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-deploy-via-change-set-workflow.yml
+    name: AWS SAR Deploy Application Via Change Set
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-provision-and-share-workflow.yml
+    name: AWS SAR Provision And Share Application
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-publish-application-workflow.yml
+    name: AWS SAR Publish Application
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-publish-multiple-versions-workflow.yml
+    name: AWS SAR Publish Multiple Versions
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-set-application-policy-workflow.yml
+    name: AWS SAR Set Application Policy
+  - type: Arazzo
+    url: arazzo/amazon-serverless-application-repository-update-application-metadata-workflow.yml
+    name: AWS SAR Update Application Metadata
   - type: Portal
     url: https://aws.amazon.com/serverless/serverlessrepo/
   - type: GettingStarted
@@ -75,7 +72,7 @@ common:
     url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
   - type: Console
     url: https://console.aws.amazon.com/serverlessrepo/
-  - type: SignUp
+  - type: Signup
     url: https://portal.aws.amazon.com/billing/signup
   - type: Pricing
     url: https://aws.amazon.com/serverless/serverlessrepo/pricing/
@@ -167,13 +164,13 @@ common:
     url: json-structure/amazon-serverless-application-repository-application-summary-structure.json
   - type: JSONStructure
     url: json-structure/amazon-serverless-application-repository-version-summary-structure.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-serverless-application-repository-application-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-serverless-application-repository-application-policy-statement-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-serverless-application-repository-application-summary-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-serverless-application-repository-version-summary-example.json
   - type: Integrations
     url: https://aws.amazon.com/partners/
