@@ -36,6 +36,14 @@ apis:
       - type: JSONSchema
         url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
 common:
+  - type: TrustCenter
+    url: security/amazon-serverless-application-repository-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-serverless-application-repository-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-serverless-application-repository-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-serverless-application-repository-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-serverless-application-repository/overview
   - type: Arazzo
