@@ -36,6 +36,8 @@ apis:
       - type: JSONSchema
         url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-serverless-application-repository-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-serverless-application-repository-trust-center.yml
   - type: VulnerabilityDisclosure
