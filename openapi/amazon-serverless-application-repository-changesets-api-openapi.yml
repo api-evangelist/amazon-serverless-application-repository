@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Amazon Serverless Application Repository Applications Changesets API
+  description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
+  version: 2017-09-08
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/serverless/serverlessrepo/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: https://serverlessrepo.{region}.amazonaws.com
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region.
+security:
+- AWSSignatureV4: []
+tags:
+- name: Changesets
+  description: CloudFormation changeset management
+paths:
+  /applications/{applicationId}/changesets:
+    post:
+      operationId: CreateCloudFormationChangeSet
+      summary: Amazon Serverless Application Repository Create CloudFormation Change Set
+      description: Creates an AWS CloudFormation change set for the given application.
+      tags:
+      - Changesets
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - stackName
+              properties:
+                capabilities:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of values that you must specify before you can deploy certain applications.
+                changeSetName:
+                  type: string
+                  description: The name of the change set.
+                semanticVersion:
+                  type: string
+                  description: The semantic version of the application.
+                stackName:
+                  type: string
+                  description: The name or the unique ID of the stack for which you are creating a change set.
+      responses:
+        '201':
+          description: CloudFormation change set created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  applicationId:
+                    type: string
+                  changeSetId:
+                    type: string
+                  semanticVersion:
+                    type: string
+                  stackId:
+                    type: string
+              examples:
+                CreateCloudFormationChangeSet201Example:
+                  summary: Default CreateCloudFormationChangeSet 201 response
+                  x-microcks-default: true
+                  value:
+                    applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                    changeSetId: arn:aws:cloudformation:us-east-1:123456789012:changeSet/my-change-set/abc123
+                    semanticVersion: 1.0.0
+                    stackId: arn:aws:cloudformation:us-east-1:123456789012:stack/my-stack/abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    AWSSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

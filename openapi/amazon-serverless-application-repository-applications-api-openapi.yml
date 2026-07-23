@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: Amazon Serverless Application Repository Applications API
+  description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
+  version: 2017-09-08
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/serverless/serverlessrepo/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: https://serverlessrepo.{region}.amazonaws.com
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region.
+security:
+- AWSSignatureV4: []
+tags:
+- name: Applications
+  description: Serverless application management
+paths:
+  /applications:
+    get:
+      operationId: ListApplications
+      summary: Amazon Serverless Application Repository List Applications
+      description: Lists applications owned by the requester.
+      tags:
+      - Applications
+      parameters:
+      - name: maxItems
+        in: query
+        description: The total number of items to return.
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        description: A token to specify where to start paginating.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  applications:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationSummary'
+                  nextToken:
+                    type: string
+              examples:
+                ListApplications200Example:
+                  summary: Default ListApplications 200 response
+                  x-microcks-default: true
+                  value:
+                    applications:
+                    - applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                      name: MyApp
+                      author: developer@example.com
+                      description: A sample serverless application
+                    nextToken: null
+        '400':
+          description: Bad request.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: CreateApplication
+      summary: Amazon Serverless Application Repository Create Application
+      description: Creates an application, optionally including an AWS SAM file to create the first application version in the same call.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+      responses:
+        '201':
+          description: Application created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                CreateApplication201Example:
+                  summary: Default CreateApplication 201 response
+                  x-microcks-default: true
+                  value:
+                    applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                    name: MyApp
+                    author: developer@example.com
+                    description: A sample serverless application
+        '400':
+          description: Bad request.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /applications/{applicationId}:
+    get:
+      operationId: GetApplication
+      summary: Amazon Serverless Application Repository Get Application
+      description: Gets the specified application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      - name: semanticVersion
+        in: query
+        description: The semantic version of the application to get.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                GetApplication200Example:
+                  summary: Default GetApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                    name: MyApp
+                    author: developer@example.com
+                    description: A sample serverless application
+        '404':
+          description: Application not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: UpdateApplication
+      summary: Amazon Serverless Application Repository Update Application
+      description: Updates the specified application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                author:
+                  type: string
+                  description: The name of the author publishing the app.
+                description:
+                  type: string
+                  description: The description of the application.
+                homePageUrl:
+                  type: string
+                  description: A URL with more information about the application.
+                labels:
+                  type: array
+                  items:
+                    type: string
+                  description: Labels to improve discovery of apps in search results.
+                readmeBody:
+                  type: string
+                  description: A text readme file that contains a more detailed description of the application.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+              examples:
+                UpdateApplication200Example:
+                  summary: Default UpdateApplication 200 response
+                  x-microcks-default: true
+                  value:
+                    applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                    name: MyApp
+                    description: Updated description
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: DeleteApplication
+      summary: Amazon Serverless Application Repository Delete Application
+      description: Deletes the specified application.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Application deleted successfully.
+        '404':
+          description: Application not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Application:
+      type: object
+      description: Information about the application.
+      properties:
+        applicationId:
+          type: string
+          description: The application Amazon Resource Name (ARN).
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        name:
+          type: string
+          description: The name of the application.
+          example: MyApp
+        author:
+          type: string
+          description: The name of the author publishing the app.
+          example: developer@example.com
+        description:
+          type: string
+          description: The description of the application.
+          example: A sample serverless application
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time this resource was created.
+        homePageUrl:
+          type: string
+          description: A URL with more information about the application.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to improve discovery of apps in search results.
+        licenseUrl:
+          type: string
+          description: A link to a license file of the app.
+        readmeUrl:
+          type: string
+          description: A link to the readme file in Markdown language.
+        spdxLicenseId:
+          type: string
+          description: A valid identifier from https://spdx.org/licenses/.
+        version:
+          $ref: '#/components/schemas/VersionSummary'
+    CreateApplicationRequest:
+      type: object
+      required:
+      - author
+      - description
+      - name
+      properties:
+        author:
+          type: string
+          description: The name of the author publishing the app.
+        description:
+          type: string
+          description: The description of the application.
+        homePageUrl:
+          type: string
+          description: A URL with more information about the application.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to improve discovery.
+        licenseBody:
+          type: string
+          description: A text file that contains the license of the app.
+        name:
+          type: string
+          description: The name of the application.
+        readmeBody:
+          type: string
+          description: A text readme file for the application.
+        spdxLicenseId:
+          type: string
+          description: A valid identifier from https://spdx.org/licenses/.
+        templateBody:
+          type: string
+          description: The local packaged AWS SAM template file of your application.
+    VersionSummary:
+      type: object
+      description: Summary of details about an application version.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        semanticVersion:
+          type: string
+          description: The semantic version of the application.
+          example: 1.0.0
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when this version was created.
+        sourceCodeUrl:
+          type: string
+          description: A link to a public repository for the source code.
+    ApplicationSummary:
+      type: object
+      description: Summary of details about the application.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        name:
+          type: string
+          description: The name of the application.
+          example: MyApp
+        author:
+          type: string
+          description: The name of the author.
+          example: developer@example.com
+        description:
+          type: string
+          description: The description of the application.
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when created.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels for discovery.
+  securitySchemes:
+    AWSSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

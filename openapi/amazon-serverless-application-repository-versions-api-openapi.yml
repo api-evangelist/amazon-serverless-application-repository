@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Amazon Serverless Application Repository Applications Versions API
+  description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
+  version: 2017-09-08
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/serverless/serverlessrepo/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: https://serverlessrepo.{region}.amazonaws.com
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region.
+security:
+- AWSSignatureV4: []
+tags:
+- name: Versions
+  description: Application version management
+paths:
+  /applications/{applicationId}/versions:
+    get:
+      operationId: ListApplicationVersions
+      summary: Amazon Serverless Application Repository List Application Versions
+      description: Lists versions for the specified application.
+      tags:
+      - Versions
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      - name: maxItems
+        in: query
+        description: The total number of items to return.
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        description: A token to specify where to start paginating.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VersionSummary'
+                  nextToken:
+                    type: string
+              examples:
+                ListApplicationVersions200Example:
+                  summary: Default ListApplicationVersions 200 response
+                  x-microcks-default: true
+                  value:
+                    versions:
+                    - applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                      semanticVersion: 1.0.0
+                      creationTime: '2025-03-15T14:30:00Z'
+                    nextToken: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: CreateApplicationVersion
+      summary: Amazon Serverless Application Repository Create Application Version
+      description: Creates an application version.
+      tags:
+      - Versions
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - semanticVersion
+              properties:
+                semanticVersion:
+                  type: string
+                  description: The semantic version of the new version.
+                sourceCodeArchiveUrl:
+                  type: string
+                  description: A link to the S3 object that contains the ZIP archive of the source code for this version.
+                sourceCodeUrl:
+                  type: string
+                  description: A link to a public repository for the source code of your application.
+                templateBody:
+                  type: string
+                  description: The raw packaged AWS SAM template of your application.
+      responses:
+        '201':
+          description: Application version created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionSummary'
+              examples:
+                CreateApplicationVersion201Example:
+                  summary: Default CreateApplicationVersion 201 response
+                  x-microcks-default: true
+                  value:
+                    applicationId: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+                    semanticVersion: 1.1.0
+                    creationTime: '2025-03-15T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    VersionSummary:
+      type: object
+      description: Summary of details about an application version.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        semanticVersion:
+          type: string
+          description: The semantic version of the application.
+          example: 1.0.0
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when this version was created.
+        sourceCodeUrl:
+          type: string
+          description: A link to a public repository for the source code.
+  securitySchemes:
+    AWSSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication

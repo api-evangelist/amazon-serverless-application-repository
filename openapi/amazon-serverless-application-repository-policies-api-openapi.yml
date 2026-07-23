@@ -1,0 +1,142 @@
+openapi: 3.1.0
+info:
+  title: Amazon Serverless Application Repository Applications Policies API
+  description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
+  version: 2017-09-08
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/serverless/serverlessrepo/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: https://serverlessrepo.{region}.amazonaws.com
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region.
+security:
+- AWSSignatureV4: []
+tags:
+- name: Policies
+  description: Application policy management
+paths:
+  /applications/{applicationId}/policy:
+    get:
+      operationId: GetApplicationPolicy
+      summary: Amazon Serverless Application Repository Get Application Policy
+      description: Retrieves the policy for the application.
+      tags:
+      - Policies
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationPolicyStatement'
+              examples:
+                GetApplicationPolicy200Example:
+                  summary: Default GetApplicationPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    statements:
+                    - statementId: policy-stmt-001
+                      principals:
+                      - '*'
+                      actions:
+                      - serverlessrepo:Deploy
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: PutApplicationPolicy
+      summary: Amazon Serverless Application Repository Put Application Policy
+      description: Sets the permission policy for an application.
+      tags:
+      - Policies
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        description: The Amazon Resource Name (ARN) of the application.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - statements
+              properties:
+                statements:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ApplicationPolicyStatement'
+      responses:
+        '200':
+          description: Policy updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationPolicyStatement'
+              examples:
+                PutApplicationPolicy200Example:
+                  summary: Default PutApplicationPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    statements:
+                    - statementId: policy-stmt-001
+                      principals:
+                      - '*'
+                      actions:
+                      - serverlessrepo:Deploy
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApplicationPolicyStatement:
+      type: object
+      description: Policy statement for an application.
+      properties:
+        statementId:
+          type: string
+          description: A unique ID for the statement.
+          example: policy-stmt-001
+        principals:
+          type: array
+          items:
+            type: string
+          description: An array of AWS account IDs or * for public access.
+        actions:
+          type: array
+          items:
+            type: string
+          description: For each action, specify the permission to be granted.
+  securitySchemes:
+    AWSSignatureV4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
