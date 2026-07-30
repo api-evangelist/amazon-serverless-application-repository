@@ -1,3 +1,17 @@
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-serverless-application-repository.png
 name: Amazon Serverless Application Repository
 description: >-
   The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and
@@ -15,26 +29,74 @@ tags:
   - SAM
   - Serverless
 apis:
-  - name: AWS Serverless Application Repository API
-    description: >-
-      The AWS Serverless Application Repository API provides programmatic access to create and manage serverless
-      applications, application versions, and deployment configurations for publishing and sharing SAM applications.
-    humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
-    baseURL: https://serverlessrepo.{region}.amazonaws.com
-    tags:
-      - Application Repository
-      - Lambda
-      - Serverless
-      - SAM
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
-      - type: OpenAPI
-        url: openapi/amazon-serverless-application-repository-openapi.yml
-      - type: JSONSchema
-        url: json-schema/amazon-serverless-application-repository-application-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
+- aid: >-
+    amazon-serverless-application-repository:amazon-serverless-application-repository-applications-api
+  name: Amazon Serverless Application Repository Applications API
+  description: Serverless application management
+  humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  baseURL: https://serverlessrepo.{region}.amazonaws.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-serverless-application-repository-applications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-application-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
+- aid: >-
+    amazon-serverless-application-repository:amazon-serverless-application-repository-changesets-api
+  name: Amazon Serverless Application Repository Changesets API
+  description: CloudFormation changeset management
+  humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  baseURL: https://serverlessrepo.{region}.amazonaws.com
+  tags:
+  - Changesets
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-serverless-application-repository-changesets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-application-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
+- aid: >-
+    amazon-serverless-application-repository:amazon-serverless-application-repository-policies-api
+  name: Amazon Serverless Application Repository Policies API
+  description: Application policy management
+  humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  baseURL: https://serverlessrepo.{region}.amazonaws.com
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-serverless-application-repository-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-application-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
+- aid: >-
+    amazon-serverless-application-repository:amazon-serverless-application-repository-versions-api
+  name: Amazon Serverless Application Repository Versions API
+  description: Application version management
+  humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  baseURL: https://serverlessrepo.{region}.amazonaws.com
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-serverless-application-repository-versions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-application-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-serverless-application-repository-agentic-access.yml
