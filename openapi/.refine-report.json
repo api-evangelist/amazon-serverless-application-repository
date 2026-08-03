@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-serverless-application-repository",
+  "sources": [
+    "amazon-serverless-application-repository-applications-api-openapi.yml",
+    "amazon-serverless-application-repository-changesets-api-openapi.yml",
+    "amazon-serverless-application-repository-policies-api-openapi.yml",
+    "amazon-serverless-application-repository-versions-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-serverless-application-repository-applications-api-openapi.yml",
+    "amazon-serverless-application-repository-changesets-api-openapi.yml",
+    "amazon-serverless-application-repository-policies-api-openapi.yml",
+    "amazon-serverless-application-repository-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
