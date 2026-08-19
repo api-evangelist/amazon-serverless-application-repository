@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "3c1de45c-ed94-4cca-a144-66a61235cac9",
+      "name": "Changesets",
+      "description": {
+        "content": "CloudFormation changeset management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f0449b1-0716-4490-9945-2ccb9e8500f8",
+          "name": "Amazon Serverless Application Repository Create CloudFormation Change Set",
+          "request": {
+            "name": "Amazon Serverless Application Repository Create CloudFormation Change Set",
+            "description": {
+              "content": "Creates an AWS CloudFormation change set for the given application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "changesets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                },
+                {
+                  "description": "The AWS region.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stackName\": \"<string>\",\n  \"capabilities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"changeSetName\": \"<string>\",\n  \"semanticVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d7580ea-c2f8-47b1-870f-a95c07c036bd",
+              "name": "CloudFormation change set created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "changesets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    },
+                    {
+                      "description": "The AWS region.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stackName\": \"<string>\",\n  \"capabilities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"changeSetName\": \"<string>\",\n  \"semanticVersion\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationId\": \"arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp\",\n  \"changeSetId\": \"arn:aws:cloudformation:us-east-1:123456789012:changeSet/my-change-set/abc123\",\n  \"semanticVersion\": \"1.0.0\",\n  \"stackId\": \"arn:aws:cloudformation:us-east-1:123456789012:stack/my-stack/abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://serverlessrepo.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4bcd825f-69a1-4ec2-b023-e4f5e683c80c",
+    "name": "Amazon Serverless Application Repository Applications Changesets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

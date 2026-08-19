@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Serverless Application Repository Applications Changesets API",
+    "version": "2017-09-08"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Changesets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Create CloudFormation Change Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/changesets",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an AWS CloudFormation change set for the given application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

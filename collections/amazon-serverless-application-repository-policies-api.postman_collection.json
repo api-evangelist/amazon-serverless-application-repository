@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "9281d546-9c9a-4db4-b30f-a27d1e9c6690",
+      "name": "Policies",
+      "description": {
+        "content": "Application policy management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "328dc91b-3793-4d08-91f4-1bbd69518608",
+          "name": "Amazon Serverless Application Repository Get Application Policy",
+          "request": {
+            "name": "Amazon Serverless Application Repository Get Application Policy",
+            "description": {
+              "content": "Retrieves the policy for the application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                },
+                {
+                  "description": "The AWS region.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2c8809c-70af-48e8-9a45-444b49ecbb2d",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    },
+                    {
+                      "description": "The AWS region.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statements\": [\n    {\n      \"statementId\": \"policy-stmt-001\",\n      \"principals\": [\n        \"*\"\n      ],\n      \"actions\": [\n        \"serverlessrepo:Deploy\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97bbdb81-e96b-4b3c-a266-757c0d8ab5ee",
+          "name": "Amazon Serverless Application Repository Put Application Policy",
+          "request": {
+            "name": "Amazon Serverless Application Repository Put Application Policy",
+            "description": {
+              "content": "Sets the permission policy for an application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                },
+                {
+                  "description": "The AWS region.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statements\": [\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statementId\": \"<string>\",\n      \"principals\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87211e20-412e-44eb-ab8c-b2d37d16a191",
+              "name": "Policy updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    },
+                    {
+                      "description": "The AWS region.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statementId\": \"policy-stmt-001\",\n      \"principals\": [\n        \"string\",\n        \"string\"\n      ],\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"statementId\": \"policy-stmt-001\",\n      \"principals\": [\n        \"string\",\n        \"string\"\n      ],\n      \"actions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statements\": [\n    {\n      \"statementId\": \"policy-stmt-001\",\n      \"principals\": [\n        \"*\"\n      ],\n      \"actions\": [\n        \"serverlessrepo:Deploy\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://serverlessrepo.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00f44024-1b22-4f8d-bdbb-e59fee611dfb",
+    "name": "Amazon Serverless Application Repository Applications Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

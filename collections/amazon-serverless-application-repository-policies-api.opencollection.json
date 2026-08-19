@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Serverless Application Repository Applications Policies API",
+    "version": "2017-09-08"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Get Application Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/policy",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ]
+          },
+          "docs": "Retrieves the policy for the application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Put Application Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/policy",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the permission policy for an application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

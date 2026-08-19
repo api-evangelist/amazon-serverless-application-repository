@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Serverless Application Repository Applications Versions API",
+    "version": "2017-09-08"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository List Application Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/versions",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              },
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "The total number of items to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to specify where to start paginating."
+              }
+            ]
+          },
+          "docs": "Lists versions for the specified application."
+        },
+        {
+          "info": {
+            "name": "Amazon Serverless Application Repository Create Application Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://serverlessrepo.{region}.amazonaws.com/applications/:applicationId/versions",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Resource Name (ARN) of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an application version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

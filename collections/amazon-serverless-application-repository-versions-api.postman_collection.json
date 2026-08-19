@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "c6476d3d-f8a0-4dad-a068-a38ddd833a6d",
+      "name": "Versions",
+      "description": {
+        "content": "Application version management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec70d58b-9f76-482b-973d-1715abbc7e85",
+          "name": "Amazon Serverless Application Repository List Application Versions",
+          "request": {
+            "name": "Amazon Serverless Application Repository List Application Versions",
+            "description": {
+              "content": "Lists versions for the specified application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "<integer>",
+                  "description": "The total number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "A token to specify where to start paginating."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                },
+                {
+                  "description": "The AWS region.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0891f182-a736-47d2-81a9-87e87115e893",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    },
+                    {
+                      "description": "The AWS region.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"versions\": [\n    {\n      \"applicationId\": \"arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp\",\n      \"semanticVersion\": \"1.0.0\",\n      \"creationTime\": \"2025-03-15T14:30:00Z\"\n    }\n  ],\n  \"nextToken\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e951c5e0-7f15-4625-99f3-abc1ea6affbf",
+          "name": "Amazon Serverless Application Repository Create Application Version",
+          "request": {
+            "name": "Amazon Serverless Application Repository Create Application Version",
+            "description": {
+              "content": "Creates an application version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                },
+                {
+                  "description": "The AWS region.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"semanticVersion\": \"<string>\",\n  \"sourceCodeArchiveUrl\": \"<string>\",\n  \"sourceCodeUrl\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "794ca8c1-3898-47c1-a9ac-6411197ddb08",
+              "name": "Application version created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The Amazon Resource Name (ARN) of the application."
+                    },
+                    {
+                      "description": "The AWS region.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"semanticVersion\": \"<string>\",\n  \"sourceCodeArchiveUrl\": \"<string>\",\n  \"sourceCodeUrl\": \"<string>\",\n  \"templateBody\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationId\": \"arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp\",\n  \"semanticVersion\": \"1.1.0\",\n  \"creationTime\": \"2025-03-15T14:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://serverlessrepo.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3888a797-b578-4ef4-9d99-8308113aae93",
+    "name": "Amazon Serverless Application Repository Applications Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}
