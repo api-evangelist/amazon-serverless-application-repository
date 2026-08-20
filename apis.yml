@@ -37,6 +37,8 @@ apis:
   humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
   baseURL: https://serverlessrepo.{region}.amazonaws.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
