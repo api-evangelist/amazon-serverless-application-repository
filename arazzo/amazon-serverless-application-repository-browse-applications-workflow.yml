@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: serverlessRepoApi
-  url: ../openapi/amazon-serverless-application-repository-openapi.yml
+- name: applicationsApi
+  url: ../openapi/amazon-serverless-application-repository-applications-api-openapi.yml
+  type: openapi
+- name: versionsApi
+  url: ../openapi/amazon-serverless-application-repository-versions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: browse-applications
