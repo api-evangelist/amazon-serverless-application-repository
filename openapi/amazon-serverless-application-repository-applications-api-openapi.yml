@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon Serverless Application Repository Applications API
   description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
@@ -221,6 +221,61 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VersionSummary:
+      type: object
+      description: Summary of details about an application version.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        semanticVersion:
+          type: string
+          description: The semantic version of the application.
+          example: 1.0.0
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when this version was created.
+        sourceCodeUrl:
+          type: string
+          description: A link to a public repository for the source code.
+    CreateApplicationRequest:
+      type: object
+      required:
+      - author
+      - description
+      - name
+      properties:
+        author:
+          type: string
+          description: The name of the author publishing the app.
+        description:
+          type: string
+          description: The description of the application.
+        homePageUrl:
+          type: string
+          description: A URL with more information about the application.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to improve discovery.
+        licenseBody:
+          type: string
+          description: A text file that contains the license of the app.
+        name:
+          type: string
+          description: The name of the application.
+        readmeBody:
+          type: string
+          description: A text readme file for the application.
+        spdxLicenseId:
+          type: string
+          description: A valid identifier from https://spdx.org/licenses/.
+        templateBody:
+          type: string
+          description: The local packaged AWS SAM template file of your application.
     Application:
       type: object
       description: Information about the application.
@@ -264,61 +319,6 @@ components:
           description: A valid identifier from https://spdx.org/licenses/.
         version:
           $ref: '#/components/schemas/VersionSummary'
-    CreateApplicationRequest:
-      type: object
-      required:
-      - author
-      - description
-      - name
-      properties:
-        author:
-          type: string
-          description: The name of the author publishing the app.
-        description:
-          type: string
-          description: The description of the application.
-        homePageUrl:
-          type: string
-          description: A URL with more information about the application.
-        labels:
-          type: array
-          items:
-            type: string
-          description: Labels to improve discovery.
-        licenseBody:
-          type: string
-          description: A text file that contains the license of the app.
-        name:
-          type: string
-          description: The name of the application.
-        readmeBody:
-          type: string
-          description: A text readme file for the application.
-        spdxLicenseId:
-          type: string
-          description: A valid identifier from https://spdx.org/licenses/.
-        templateBody:
-          type: string
-          description: The local packaged AWS SAM template file of your application.
-    VersionSummary:
-      type: object
-      description: Summary of details about an application version.
-      properties:
-        applicationId:
-          type: string
-          description: The application ARN.
-          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
-        semanticVersion:
-          type: string
-          description: The semantic version of the application.
-          example: 1.0.0
-        creationTime:
-          type: string
-          format: date-time
-          description: The date and time when this version was created.
-        sourceCodeUrl:
-          type: string
-          description: A link to a public repository for the source code.
     ApplicationSummary:
       type: object
       description: Summary of details about the application.
