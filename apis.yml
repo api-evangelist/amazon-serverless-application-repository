@@ -27,24 +27,23 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-serverless-application-repository.png
 name: Amazon Serverless Application Repository
-description: >-
-  The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and
-  publish serverless applications. It enables you to quickly deploy code samples, components, and complete applications
-  for common use cases such as web and mobile backends, data processing, and IoT applications using AWS SAM templates.
+description: The AWS Serverless Application Repository enables teams, organizations, and individual developers
+  to find, deploy, and publish serverless applications. It enables you to quickly deploy code samples,
+  components, and complete applications for common use cases such as web and mobile backends, data processing,
+  and IoT applications using AWS SAM templates.
 url: https://aws.amazon.com/serverless/serverlessrepo/
 baseURL: https://serverlessrepo.amazonaws.com
 kind: company
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 tags:
-  - Application Repository
-  - AWS
-  - Lambda
-  - SAM
-  - Serverless
+- Application Repository
+- AWS
+- Lambda
+- SAM
+- Serverless
 apis:
-- aid: >-
-    amazon-serverless-application-repository:amazon-serverless-application-repository-applications-api
+- aid: amazon-serverless-application-repository:amazon-serverless-application-repository-applications-api
   name: Amazon Serverless Application Repository Applications API
   description: Serverless application management
   humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
@@ -62,8 +61,7 @@ apis:
     url: json-schema/amazon-serverless-application-repository-application-schema.json
   - type: JSONSchema
     url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
-- aid: >-
-    amazon-serverless-application-repository:amazon-serverless-application-repository-changesets-api
+- aid: amazon-serverless-application-repository:amazon-serverless-application-repository-changesets-api
   name: Amazon Serverless Application Repository Changesets API
   description: CloudFormation changeset management
   humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
@@ -79,8 +77,7 @@ apis:
     url: json-schema/amazon-serverless-application-repository-application-schema.json
   - type: JSONSchema
     url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
-- aid: >-
-    amazon-serverless-application-repository:amazon-serverless-application-repository-policies-api
+- aid: amazon-serverless-application-repository:amazon-serverless-application-repository-policies-api
   name: Amazon Serverless Application Repository Policies API
   description: Application policy management
   humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
@@ -96,8 +93,7 @@ apis:
     url: json-schema/amazon-serverless-application-repository-application-schema.json
   - type: JSONSchema
     url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
-- aid: >-
-    amazon-serverless-application-repository:amazon-serverless-application-repository-versions-api
+- aid: amazon-serverless-application-repository:amazon-serverless-application-repository-versions-api
   name: Amazon Serverless Application Repository Versions API
   description: Application version management
   humanURL: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
@@ -114,165 +110,169 @@ apis:
   - type: JSONSchema
     url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
 common:
-  - type: AgenticAccess
-    url: agentic-access/amazon-serverless-application-repository-agentic-access.yml
-  - type: TrustCenter
-    url: security/amazon-serverless-application-repository-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/amazon-serverless-application-repository-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/amazon-serverless-application-repository-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-serverless-application-repository-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/amazon-serverless-application-repository/overview
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-browse-applications-workflow.yml
-    name: AWS SAR Browse And Inspect Applications
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-decommission-application-workflow.yml
-    name: AWS SAR Decommission Application
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-deploy-via-change-set-workflow.yml
-    name: AWS SAR Deploy Application Via Change Set
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-provision-and-share-workflow.yml
-    name: AWS SAR Provision And Share Application
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-publish-application-workflow.yml
-    name: AWS SAR Publish Application
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-publish-multiple-versions-workflow.yml
-    name: AWS SAR Publish Multiple Versions
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-set-application-policy-workflow.yml
-    name: AWS SAR Set Application Policy
-  - type: Arazzo
-    url: arazzo/amazon-serverless-application-repository-update-application-metadata-workflow.yml
-    name: AWS SAR Update Application Metadata
-  - type: Portal
-    url: https://aws.amazon.com/serverless/serverlessrepo/
-  - type: GettingStarted
-    url: https://aws.amazon.com/serverless/serverlessrepo/getting-started/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/serverlessrepo/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
-  - type: Console
-    url: https://console.aws.amazon.com/serverlessrepo/
-  - type: Signup
-    url: https://portal.aws.amazon.com/billing/signup
-  - type: Pricing
-    url: https://aws.amazon.com/serverless/serverlessrepo/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/serverless/serverlessrepo/faqs/
-  - type: Blog
-    url: https://aws.amazon.com/blogs/compute/tag/serverless-application-repository/
-  - type: StatusPage
-    url: https://health.aws.amazon.com/health/status
-  - type: Support
-    url: https://aws.amazon.com/premiumsupport/
-  - type: TermsOfService
-    url: https://aws.amazon.com/service-terms/
-  - type: PrivacyPolicy
-    url: https://aws.amazon.com/privacy/
-  - type: GitHubOrganization
-    url: https://github.com/aws
-  - type: YouTube
-    url: https://www.youtube.com/user/AmazonWebServices
-  - type: StackOverflow
-    url: https://stackoverflow.com/questions/tagged/serverless-application-repository
-  - type: KnowledgeCenter
-    url: https://repost.aws/knowledge-center
-  - type: SpectralRules
-    url: rules/amazon-serverless-application-repository-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/amazon-serverless-application-repository-vocabulary.yaml
-  - type: Features
-    data:
-      - name: One-Click Deployment
-        description: Deploy pre-built serverless applications with a single click from the SAR console.
-      - name: SAM Template Support
-        description: Publish applications as AWS SAM templates with full CloudFormation resource support.
-      - name: Semantic Versioning
-        description: Manage multiple application versions using semantic versioning for controlled updates.
-      - name: Public and Private Sharing
-        description: Share applications publicly to the entire AWS community or privately within your organization.
-      - name: Nested Applications
-        description: Compose complex serverless architectures using nested SAM application references.
-      - name: Policy Sharing
-        description: Control who can deploy your application using resource-based policies.
-      - name: License Management
-        description: Attach open source licenses to applications using SPDX license identifiers.
-      - name: CloudFormation Integration
-        description: Deploy applications through CloudFormation changesets for full infrastructure-as-code support.
-  - type: UseCases
-    data:
-      - name: Rapid Prototyping
-        description: Quickly deploy serverless application templates for common patterns like APIs, data processing, and IoT.
-      - name: Internal Application Sharing
-        description: Share production-ready serverless building blocks across teams within your organization.
-      - name: Open Source Distribution
-        description: Publish open source serverless applications to the public SAR catalog.
-      - name: Partner Integration Patterns
-        description: Distribute serverless integration patterns to AWS partner customers.
-      - name: Microservice Templates
-        description: Package and share reusable microservice patterns as deployable SAR applications.
-      - name: DevOps Automation
-        description: Automate deployment of pre-vetted serverless infrastructure patterns via CI/CD pipelines.
-  - type: Integrations
-    data:
-      - name: AWS SAM
-        description: Native integration with the AWS Serverless Application Model for packaging and publishing.
-      - name: AWS CloudFormation
-        description: Applications are deployed via CloudFormation change sets for full IaC integration.
-      - name: AWS Lambda
-        description: The primary compute runtime for all SAR-deployed serverless applications.
-      - name: Amazon API Gateway
-        description: Commonly bundled with SAR applications for HTTP API exposure.
-      - name: AWS CodePipeline
-        description: Automate SAR application publishing as part of CI/CD pipelines.
-      - name: AWS Serverless Framework
-        description: Third-party Serverless Framework plugins support SAR publishing workflows.
-      - name: Amazon DynamoDB
-        description: Frequently included as a data store in SAR application templates.
-      - name: Amazon S3
-        description: Used for hosting static content and storing SAR application artifacts.
-  - type: JSONLD
-    url: json-ld/amazon-serverless-application-repository-context.jsonld
-  - type: JSONSchema
-    url: json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-serverless-application-repository-application-summary-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-serverless-application-repository-application-policy-statement-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-serverless-application-repository-application-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-serverless-application-repository-application-summary-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-serverless-application-repository-version-summary-structure.json
-  - type: Examples
-    url: examples/amazon-serverless-application-repository-application-example.json
-  - type: Examples
-    url: examples/amazon-serverless-application-repository-application-policy-statement-example.json
-  - type: Examples
-    url: examples/amazon-serverless-application-repository-application-summary-example.json
-  - type: Examples
-    url: examples/amazon-serverless-application-repository-version-summary-example.json
-  - type: Integrations
-    url: https://aws.amazon.com/partners/
+- type: Website
+  url: https://amazon.com
+- type: AgenticAccess
+  url: agentic-access/amazon-serverless-application-repository-agentic-access.yml
+- type: TrustCenter
+  url: security/amazon-serverless-application-repository-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-serverless-application-repository-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-serverless-application-repository-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-serverless-application-repository-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-serverless-application-repository/overview
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-browse-applications-workflow.yml
+  name: AWS SAR Browse And Inspect Applications
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-decommission-application-workflow.yml
+  name: AWS SAR Decommission Application
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-deploy-via-change-set-workflow.yml
+  name: AWS SAR Deploy Application Via Change Set
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-provision-and-share-workflow.yml
+  name: AWS SAR Provision And Share Application
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-publish-application-workflow.yml
+  name: AWS SAR Publish Application
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-publish-multiple-versions-workflow.yml
+  name: AWS SAR Publish Multiple Versions
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-set-application-policy-workflow.yml
+  name: AWS SAR Set Application Policy
+- type: Arazzo
+  url: arazzo/amazon-serverless-application-repository-update-application-metadata-workflow.yml
+  name: AWS SAR Update Application Metadata
+- type: Portal
+  url: https://aws.amazon.com/serverless/serverlessrepo/
+- type: GettingStarted
+  url: https://aws.amazon.com/serverless/serverlessrepo/getting-started/
+- type: Documentation
+  url: https://docs.aws.amazon.com/serverlessrepo/
+- type: APIReference
+  url: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/appendix-api-reference.html
+- type: Console
+  url: https://console.aws.amazon.com/serverlessrepo/
+- type: Signup
+  url: https://portal.aws.amazon.com/billing/signup
+- type: Pricing
+  url: https://aws.amazon.com/serverless/serverlessrepo/pricing/
+- type: FAQ
+  url: https://aws.amazon.com/serverless/serverlessrepo/faqs/
+- type: Blog
+  url: https://aws.amazon.com/blogs/compute/tag/serverless-application-repository/
+- type: StatusPage
+  url: https://health.aws.amazon.com/health/status
+- type: Support
+  url: https://aws.amazon.com/premiumsupport/
+- type: TermsOfService
+  url: https://aws.amazon.com/service-terms/
+- type: PrivacyPolicy
+  url: https://aws.amazon.com/privacy/
+- type: GitHubOrganization
+  url: https://github.com/aws
+- type: YouTube
+  url: https://www.youtube.com/user/AmazonWebServices
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/serverless-application-repository
+- type: KnowledgeCenter
+  url: https://repost.aws/knowledge-center
+- type: SpectralRules
+  url: rules/amazon-serverless-application-repository-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-serverless-application-repository-vocabulary.yaml
+- type: Features
+  data:
+  - name: One-Click Deployment
+    description: Deploy pre-built serverless applications with a single click from the SAR console.
+  - name: SAM Template Support
+    description: Publish applications as AWS SAM templates with full CloudFormation resource support.
+  - name: Semantic Versioning
+    description: Manage multiple application versions using semantic versioning for controlled updates.
+  - name: Public and Private Sharing
+    description: Share applications publicly to the entire AWS community or privately within your organization.
+  - name: Nested Applications
+    description: Compose complex serverless architectures using nested SAM application references.
+  - name: Policy Sharing
+    description: Control who can deploy your application using resource-based policies.
+  - name: License Management
+    description: Attach open source licenses to applications using SPDX license identifiers.
+  - name: CloudFormation Integration
+    description: Deploy applications through CloudFormation changesets for full infrastructure-as-code
+      support.
+- type: UseCases
+  data:
+  - name: Rapid Prototyping
+    description: Quickly deploy serverless application templates for common patterns like APIs, data processing,
+      and IoT.
+  - name: Internal Application Sharing
+    description: Share production-ready serverless building blocks across teams within your organization.
+  - name: Open Source Distribution
+    description: Publish open source serverless applications to the public SAR catalog.
+  - name: Partner Integration Patterns
+    description: Distribute serverless integration patterns to AWS partner customers.
+  - name: Microservice Templates
+    description: Package and share reusable microservice patterns as deployable SAR applications.
+  - name: DevOps Automation
+    description: Automate deployment of pre-vetted serverless infrastructure patterns via CI/CD pipelines.
+- type: Integrations
+  data:
+  - name: AWS SAM
+    description: Native integration with the AWS Serverless Application Model for packaging and publishing.
+  - name: AWS CloudFormation
+    description: Applications are deployed via CloudFormation change sets for full IaC integration.
+  - name: AWS Lambda
+    description: The primary compute runtime for all SAR-deployed serverless applications.
+  - name: Amazon API Gateway
+    description: Commonly bundled with SAR applications for HTTP API exposure.
+  - name: AWS CodePipeline
+    description: Automate SAR application publishing as part of CI/CD pipelines.
+  - name: AWS Serverless Framework
+    description: Third-party Serverless Framework plugins support SAR publishing workflows.
+  - name: Amazon DynamoDB
+    description: Frequently included as a data store in SAR application templates.
+  - name: Amazon S3
+    description: Used for hosting static content and storing SAR application artifacts.
+- type: JSONLD
+  url: json-ld/amazon-serverless-application-repository-context.jsonld
+- type: JSONSchema
+  url: json-schema/amazon-serverless-application-repository-application-policy-statement-schema.json
+- type: JSONSchema
+  url: json-schema/amazon-serverless-application-repository-application-summary-schema.json
+- type: JSONStructure
+  url: json-structure/amazon-serverless-application-repository-application-policy-statement-structure.json
+- type: JSONStructure
+  url: json-structure/amazon-serverless-application-repository-application-structure.json
+- type: JSONStructure
+  url: json-structure/amazon-serverless-application-repository-application-summary-structure.json
+- type: JSONStructure
+  url: json-structure/amazon-serverless-application-repository-version-summary-structure.json
+- type: Examples
+  url: examples/amazon-serverless-application-repository-application-example.json
+- type: Examples
+  url: examples/amazon-serverless-application-repository-application-policy-statement-example.json
+- type: Examples
+  url: examples/amazon-serverless-application-repository-application-summary-example.json
+- type: Examples
+  url: examples/amazon-serverless-application-repository-version-summary-example.json
+- type: Integrations
+  url: https://aws.amazon.com/partners/
 integrations:
-  - name: Partner Programs
-  - name: Resources
-  - name: Success Stories
-  - name: Work with an AWS Partner
-  - name: AWS Marketplace
-  - name: AWS Partner Central
-  - name: Partner Paths
-  - name: co-sell with AWS
+- name: Partner Programs
+- name: Resources
+- name: Success Stories
+- name: Work with an AWS Partner
+- name: AWS Marketplace
+- name: AWS Partner Central
+- name: Partner Paths
+- name: co-sell with AWS
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-parent: aws
 x-relationship: product
