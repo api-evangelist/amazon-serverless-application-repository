@@ -240,42 +240,6 @@ components:
         sourceCodeUrl:
           type: string
           description: A link to a public repository for the source code.
-    CreateApplicationRequest:
-      type: object
-      required:
-      - author
-      - description
-      - name
-      properties:
-        author:
-          type: string
-          description: The name of the author publishing the app.
-        description:
-          type: string
-          description: The description of the application.
-        homePageUrl:
-          type: string
-          description: A URL with more information about the application.
-        labels:
-          type: array
-          items:
-            type: string
-          description: Labels to improve discovery.
-        licenseBody:
-          type: string
-          description: A text file that contains the license of the app.
-        name:
-          type: string
-          description: The name of the application.
-        readmeBody:
-          type: string
-          description: A text readme file for the application.
-        spdxLicenseId:
-          type: string
-          description: A valid identifier from https://spdx.org/licenses/.
-        templateBody:
-          type: string
-          description: The local packaged AWS SAM template file of your application.
     Application:
       type: object
       description: Information about the application.
@@ -319,6 +283,42 @@ components:
           description: A valid identifier from https://spdx.org/licenses/.
         version:
           $ref: '#/components/schemas/VersionSummary'
+    CreateApplicationRequest:
+      type: object
+      required:
+      - author
+      - description
+      - name
+      properties:
+        author:
+          type: string
+          description: The name of the author publishing the app.
+        description:
+          type: string
+          description: The description of the application.
+        homePageUrl:
+          type: string
+          description: A URL with more information about the application.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to improve discovery.
+        licenseBody:
+          type: string
+          description: A text file that contains the license of the app.
+        name:
+          type: string
+          description: The name of the application.
+        readmeBody:
+          type: string
+          description: A text readme file for the application.
+        spdxLicenseId:
+          type: string
+          description: A valid identifier from https://spdx.org/licenses/.
+        templateBody:
+          type: string
+          description: The local packaged AWS SAM template file of your application.
     ApplicationSummary:
       type: object
       description: Summary of details about the application.

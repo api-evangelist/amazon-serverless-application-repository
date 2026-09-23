@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Serverless Application Repository Applications Changesets API
+  title: Amazon Serverless Application Repository Changesets API
   description: The AWS Serverless Application Repository enables teams, organizations, and individual developers to find, deploy, and publish serverless applications. It provides programmatic access to create, manage, and deploy SAM-based serverless applications and manage their versions and policies.
   version: 2017-09-08
   contact:

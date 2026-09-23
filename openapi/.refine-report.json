@@ -1,10 +1,7 @@
 {
   "provider": "amazon-serverless-application-repository",
   "sources": [
-    "amazon-serverless-application-repository-applications-api-openapi.yml",
-    "amazon-serverless-application-repository-changesets-api-openapi.yml",
-    "amazon-serverless-application-repository-policies-api-openapi.yml",
-    "amazon-serverless-application-repository-versions-api-openapi.yml"
+    "_ae-authored/amazon-serverless-application-repository-openapi.yml"
   ],
   "outputs": [
     "amazon-serverless-application-repository-applications-api-openapi.yml",
@@ -16,7 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-serverless-application-repository-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-serverless-application-repository-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-serverless-application-repository-changesets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-serverless-application-repository-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-serverless-application-repository-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
