@@ -111,7 +111,7 @@ apis:
     url: json-schema/amazon-serverless-application-repository-version-summary-schema.json
 common:
 - type: Website
-  url: https://amazon.com
+  url: https://aws.amazon.com/serverless/serverlessrepo/
 - type: AgenticAccess
   url: agentic-access/amazon-serverless-application-repository-agentic-access.yml
 - type: TrustCenter
@@ -274,5 +274,5 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product
