@@ -264,25 +264,6 @@ components:
           description: A valid identifier from https://spdx.org/licenses/.
         version:
           $ref: '#/components/schemas/VersionSummary'
-    VersionSummary:
-      type: object
-      description: Summary of details about an application version.
-      properties:
-        applicationId:
-          type: string
-          description: The application ARN.
-          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
-        semanticVersion:
-          type: string
-          description: The semantic version of the application.
-          example: 1.0.0
-        creationTime:
-          type: string
-          format: date-time
-          description: The date and time when this version was created.
-        sourceCodeUrl:
-          type: string
-          description: A link to a public repository for the source code.
     CreateApplicationRequest:
       type: object
       required:
@@ -347,6 +328,25 @@ components:
           items:
             type: string
           description: Labels for discovery.
+    VersionSummary:
+      type: object
+      description: Summary of details about an application version.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        semanticVersion:
+          type: string
+          description: The semantic version of the application.
+          example: 1.0.0
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when this version was created.
+        sourceCodeUrl:
+          type: string
+          description: A link to a public repository for the source code.
   securitySchemes:
     AWSSignatureV4:
       type: apiKey
