@@ -221,6 +221,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VersionSummary:
+      type: object
+      description: Summary of details about an application version.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        semanticVersion:
+          type: string
+          description: The semantic version of the application.
+          example: 1.0.0
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when this version was created.
+        sourceCodeUrl:
+          type: string
+          description: A link to a public repository for the source code.
     Application:
       type: object
       description: Information about the application.
@@ -264,6 +283,34 @@ components:
           description: A valid identifier from https://spdx.org/licenses/.
         version:
           $ref: '#/components/schemas/VersionSummary'
+    ApplicationSummary:
+      type: object
+      description: Summary of details about the application.
+      properties:
+        applicationId:
+          type: string
+          description: The application ARN.
+          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
+        name:
+          type: string
+          description: The name of the application.
+          example: MyApp
+        author:
+          type: string
+          description: The name of the author.
+          example: developer@example.com
+        description:
+          type: string
+          description: The description of the application.
+        creationTime:
+          type: string
+          format: date-time
+          description: The date and time when created.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels for discovery.
     CreateApplicationRequest:
       type: object
       required:
@@ -300,53 +347,6 @@ components:
         templateBody:
           type: string
           description: The local packaged AWS SAM template file of your application.
-    ApplicationSummary:
-      type: object
-      description: Summary of details about the application.
-      properties:
-        applicationId:
-          type: string
-          description: The application ARN.
-          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
-        name:
-          type: string
-          description: The name of the application.
-          example: MyApp
-        author:
-          type: string
-          description: The name of the author.
-          example: developer@example.com
-        description:
-          type: string
-          description: The description of the application.
-        creationTime:
-          type: string
-          format: date-time
-          description: The date and time when created.
-        labels:
-          type: array
-          items:
-            type: string
-          description: Labels for discovery.
-    VersionSummary:
-      type: object
-      description: Summary of details about an application version.
-      properties:
-        applicationId:
-          type: string
-          description: The application ARN.
-          example: arn:aws:serverlessrepo:us-east-1:123456789012:applications/MyApp
-        semanticVersion:
-          type: string
-          description: The semantic version of the application.
-          example: 1.0.0
-        creationTime:
-          type: string
-          format: date-time
-          description: The date and time when this version was created.
-        sourceCodeUrl:
-          type: string
-          description: A link to a public repository for the source code.
   securitySchemes:
     AWSSignatureV4:
       type: apiKey
